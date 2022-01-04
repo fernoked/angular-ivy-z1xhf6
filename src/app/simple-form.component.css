@@ -16,10 +16,19 @@ label {
 input[type='text'] {
   flex: 1;
 }
+input.ng-invalid.ng-touched {
+  border: red 2px solid;
+}
+
 label.checkbox--label {
   flex: 1;
   margin-left: 8px;
 }
 div.submit {
   justify-content: flex-end;
+}
+span.error-required {
+  width: 100%;
+  padding-left: 25%;
+  color: red;
 }

@@ -1,29 +1,46 @@
 <h1>Aareon Angular Test</h1>
-<form>
+<form (submit)="formSubmit()" [formGroup]="testFormGroup">
   <div>
     <div>
       <label>Title</label>
-      <select>
-        <option value="">-- Select an option --</option>
+      <select formControlName="title">
+        <option [ngValue]="null" disabled>-- Select an option --</option>
+        <option
+          *ngFor="let title of titles"
+          [ngValue]="title.name"
+          [selected]="title.isDefault"
+        >
+          {{ title.name }}
+        </option>
         <!-- TODO: add titles to dropdown -->
       </select>
     </div>
     <div>
       <label>First name</label>
-      <input type="text" placeholder="First name" />
+      <input type="text" placeholder="First name" formControlName="firstName" />
     </div>
     <div>
       <label>Last name</label>
-      <input type="text" placeholder="Last name" />
+      <input type="text" placeholder="Last name" formControlName="lastName" />
     </div>
     <!-- TODO: add error message -->
-    <span></span>
+    <span
+      class="error-required"
+      *ngIf="
+        testFormGroup.get('lastName').invalid &&
+        (testFormGroup.get('lastName').dirty ||
+          testFormGroup.get('lastName').touched)
+      "
+      >{{ errorMessage }}</span
+    >
     <div>
-      <input type="checkbox" />
+      <input type="checkbox" formControlName="terms" />
       <label class="checkbox--label">I accept the terms & conditions</label>
     </div>
     <div class="submit">
-      <button type="submit">Submit</button>
+      <button type="submit" [disabled]="!testFormGroup.controls['terms'].value">
+        Submit
+      </button>
     </div>
   </div>
 </form>
