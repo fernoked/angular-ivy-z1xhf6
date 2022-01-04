@@ -28,7 +28,7 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
         this.titles = x;
       });
   }
-  ngOnInit() {
+  ngOnInit(): void {
     this.errorMessage = '* Last name is mandatory';
   }
 
@@ -46,7 +46,7 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
       });
   }
 
-  formSubmit() {
+  formSubmit(): void {
     if (this.testFormGroup.valid) {
       console.log(
         `${this.testFormGroup.controls['title'].value} ${this.testFormGroup.controls['firstName'].value} ${this.testFormGroup.controls['lastName'].value} `
