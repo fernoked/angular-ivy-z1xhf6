@@ -13,7 +13,6 @@ import { TitleService } from './title.service';
 export class SimpleFormComponent implements OnInit, OnDestroy {
   titles: Title[];
   titleSubscription: Subscription;
-  terms: boolean = false;
   testFormGroup = new FormGroup({
     title: new FormControl(),
     firstName: new FormControl(''),
@@ -37,7 +36,7 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
     this.titleSubscription.unsubscribe();
   }
 
-  removedByBeChickAndGetDefaultAndSort(val: Title[]) {
+  private removedByBeChickAndGetDefaultAndSort(val: Title[]): Title[] {
     const defaultTitle: Title = val.find((title) => title.isDefault === true);
     this.testFormGroup.controls['title'].setValue(defaultTitle.name);
     return val
